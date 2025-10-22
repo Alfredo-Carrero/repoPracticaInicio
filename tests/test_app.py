@@ -1,8 +1,14 @@
+import pytest  # type: ignore
 from app import app as flask_app
 
-def test_home_ok():
-    flask_app.testing = True
-    client = flask_app.test_client()
+
+@pytest.fixture
+def app():
+    """Esta fixture proporciona tu app de Flask a pytest-flask."""
+    yield flask_app
+
+
+def test_home_ok(client):
     resp = client.get("/")
     assert resp.status_code == 200
-
+    assert "Docker" in resp.get_data(as_text=True)
