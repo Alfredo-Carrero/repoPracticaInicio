@@ -1,6 +1,8 @@
 FROM python:3.11-slim
+
+RUN pip install --no-cache-dir black pytest flask==3.0.0 pytest-flask
+
+
 WORKDIR /app
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir black pytest
-CMD ["bash"]
+
+CMD [ "bash" ]
