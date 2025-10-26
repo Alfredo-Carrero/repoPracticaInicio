@@ -1,0 +1,11 @@
+# docker-compose.yml
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev  # <- Apuntando a Dockerfile.dev
+    volumes:
+      - .:/app                 # <- Con los volúmenes activados
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app
